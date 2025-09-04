@@ -235,9 +235,9 @@ const Header = () => {
                     </div>
                     <div className="PhanTimKiem">
                         <div className="logo">
-                            <a href="index.html">
+                            <Link to={"/"}>
                                 <img src="/img/logo7.png" alt="" />
-                            </a>
+                            </Link>
                         </div>
                         <div className="timKiem" ref={wrapperRef}>
                             <div className="divTimKiem">
