@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductSale } from '../../redux/Slices/productSaleSlice';
 import { fetchNews } from '../../redux/Slices/newsSlice';
 import { fetchCategories } from './../../redux/Slices/categoriesSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchProduct } from '../../redux/Slices/productsSlice';
 import FadeInSection from '../../Components/EffectScroll/interObserver';
 import FullPageLoader from '../../Components/SpinerLoading/Loading';
@@ -13,8 +13,8 @@ import FadeInRight from '../../Components/EffectScroll/FadeInRight';
 const Home = () => {
 
     const user = useSelector((state) => state.user.user);
-    console.log("user", user);
 
+    const navigate = useNavigate();
     const productSale = useSelector((state) => state.productSale.productSale);
     const product = useSelector((state) => state.products.products);
     const loading = useSelector((state) => state.productSale.loading);
@@ -145,26 +145,30 @@ const Home = () => {
                     </div>
                     <div className="row">
                         {newProducts.map(item => (
+
                             <div key={item.id} className="col-lg-3 col-md-4 col-sm-4 col-12">
-                                <FadeInSection>
-                                    <div className="sanPhamMoi">
-                                        <div className="overlay" />
-                                        <div className="iconMuaHang">
-                                            <i className="fa-regular fa-eye" />
+                                <Link style={{ textDecoration: "none" }} to={`/products/${item.id}`}>
+                                    <FadeInSection>
+                                        <div className="sanPhamMoi">
+                                            <div className="overlay" />
+                                            <div className="iconMuaHang">
+                                                <i className="fa-regular fa-eye" />
+                                            </div>
+                                            <img src={item.img} alt="" />
+                                            <h5>{item.name}</h5>
+                                            <h6>{item.brand}</h6>
+                                            <p>{formatPrice(item.price)}₫</p>
                                         </div>
-                                        <img src={item.img} alt="" />
-                                        <h5>{item.name}</h5>
-                                        <h6>NIKE</h6>
-                                        <p>{formatPrice(item.price)}₫</p>
-                                    </div>
-                                </FadeInSection>
+                                    </FadeInSection>
+                                </Link>
                             </div>
+
                         ))}
 
                     </div>
 
                     <div className="text-center">
-                        <button>Xem tất cả</button>
+                        <button onClick={() => { navigate("/categories/1") }}>Xem tất cả</button>
                     </div>
                 </section>
                 <section className="section-2 container" style={{ marginTop: '4%' }}>
@@ -200,7 +204,7 @@ const Home = () => {
                     </div>
 
                     <div className="text-center">
-                        <button>Xem tất cả</button>
+                        <button onClick={() => { navigate("/categories/1") }}>Xem tất cả</button>
                     </div>
                 </section>
                 <section className="section-3 container" style={{ marginTop: '4%', marginBottom: '4%' }}>
