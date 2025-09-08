@@ -182,22 +182,24 @@ const Home = () => {
                     <div className="row">
                         {productSale.map(item => (
                             <div key={item.id} className="col-lg-3 col-md-4 col-sm-4 col-12">
-                                <FadeInSection>
-                                    <div className="sanPhamMoi">
-                                        <div className="overlay"></div>
-                                        <div className="iconMuaHang">
-                                            <i className="fa-regular fa-eye"></i>
-                                        </div>
-                                        <img src={item.img} alt="" />
-                                        <h5>{item.name}</h5>
-                                        <h6>{item.brand}</h6>
-                                        <div className="d-flex justify-content-between">
-                                            <h4 className="text-danger">{formatPrice(item.priceSale)}₫</h4>
-                                            <p className="text-black-50 text-decoration-line-through">{formatPrice(item.price)}₫</p>
+                                <Link style={{ textDecoration: "none" }} to={`/categories/1`}>
+                                    <FadeInSection>
+                                        <div className="sanPhamMoi">
+                                            <div className="overlay"></div>
+                                            <div className="iconMuaHang">
+                                                <i className="fa-regular fa-eye"></i>
+                                            </div>
+                                            <img src={item.img} alt="" />
+                                            <h5>{item.name}</h5>
+                                            <h6>{item.brand}</h6>
+                                            <div className="d-flex justify-content-between">
+                                                <h4 className="text-danger">{formatPrice(item.priceSale)}₫</h4>
+                                                <p className="text-black-50 text-decoration-line-through">{formatPrice(item.price)}₫</p>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                </FadeInSection>
+                                    </FadeInSection>
+                                </Link>
                             </div>
                         ))}
 
